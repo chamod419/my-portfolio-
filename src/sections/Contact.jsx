@@ -77,10 +77,9 @@ function SocialCard({ link, isDark }) {
       rel="noreferrer"
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      style={{ rotateX: springX, rotateY: springY, transformStyle: "preserve-3d", perspective: 600 }}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.2 }}
-      className={`group relative flex items-center gap-4 overflow-hidden rounded-2xl p-4 transition-all duration-300 ${
+      className={`group relative flex min-w-0 items-center gap-3 overflow-hidden rounded-2xl p-3.5 transition-all duration-300 ${
         isDark
           ? "border border-white/8 bg-white/[0.03] hover:border-white/15"
           : "border border-slate-200 bg-white hover:border-slate-300"
@@ -96,15 +95,16 @@ function SocialCard({ link, isDark }) {
       <div className={`absolute inset-y-0 left-0 w-0.5 rounded-full bg-gradient-to-b ${link.accent} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
 
       {/* Icon */}
-      <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${link.accent} shadow-lg`}>
-        <Icon className="text-base text-white" />
+      <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${link.accent} shadow-lg`}>
+        <Icon className="text-sm text-white" />
       </div>
 
-      <div>
+      {/* Text — min-w-0 + truncate prevents overflow */}
+      <div className="min-w-0 flex-1">
         <p className={`text-xs font-semibold uppercase tracking-wider ${isDark ? "text-gray-500" : "text-slate-400"}`}>
           {link.label}
         </p>
-        <p className={`mt-0.5 text-sm font-semibold ${isDark ? "text-gray-200" : "text-slate-700"}`}>
+        <p className={`mt-0.5 truncate text-sm font-semibold ${isDark ? "text-gray-200" : "text-slate-700"}`}>
           {link.value}
         </p>
       </div>
@@ -123,7 +123,7 @@ function FloatingInput({ label, name, type = "text", value, onChange, error, pla
   const [focused, setFocused] = useState(false);
   const hasValue = value.length > 0;
 
-  const baseClass = `w-full rounded-2xl border px-4 py-3.5 text-sm outline-none transition-all duration-300 resize-none ${
+  const baseClass = `w-full min-w-0 box-border rounded-2xl border px-4 py-3 text-sm outline-none transition-all duration-300 resize-none ${
     isDark
       ? `bg-white/[0.04] text-white placeholder:text-gray-600 ${
           error
@@ -142,7 +142,7 @@ function FloatingInput({ label, name, type = "text", value, onChange, error, pla
   }`;
 
   return (
-    <div>
+    <div className="w-full min-w-0">
       <label className={`mb-2 block text-xs font-bold uppercase tracking-wider ${isDark ? "text-gray-400" : "text-slate-500"}`}>
         {label}
       </label>
@@ -243,9 +243,9 @@ function Contact({ theme }) {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden px-6 py-28 md:px-10">
+    <section id="contact" className="relative w-full overflow-x-hidden px-4 py-20 sm:px-6 md:px-10 md:py-28">
       {/* Background */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
           animate={{ scale: [1, 1.2, 1], opacity: [0.04, 0.09, 0.04] }}
           transition={{ duration: 9, repeat: Infinity }}
@@ -258,15 +258,15 @@ function Contact({ theme }) {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto w-full max-w-7xl">
         <SectionTitle title="Contact Me" subtitle="Get In Touch" theme={theme} />
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr]">
+        <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-[1fr_1.1fr]">
           {/* Left — Info */}
-          <Reveal>
+          <Reveal className="w-full">
             <motion.div
               whileHover={{ y: -3 }}
-              className={`relative overflow-hidden rounded-[32px] p-8 md:p-10 shadow-xl ${
+              className={`relative w-full overflow-hidden rounded-[20px] p-5 sm:p-7 md:rounded-[28px] md:p-9 shadow-xl ${
                 isDark
                   ? "border border-white/8 bg-white/[0.03] backdrop-blur-xl"
                   : "border border-slate-200 bg-white"
@@ -283,7 +283,7 @@ function Contact({ theme }) {
                 initial={{ scale: 0.85, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
-                className="mb-5 inline-flex items-center gap-2 rounded-xl border border-cyan-400/20 bg-cyan-400/8 px-4 py-2 text-sm font-bold text-cyan-400"
+                className="mb-4 inline-flex flex-wrap items-center gap-2 rounded-xl border border-cyan-400/20 bg-cyan-400/8 px-3 py-2 text-sm font-bold text-cyan-400"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
@@ -292,7 +292,7 @@ function Contact({ theme }) {
                 Available Now
               </motion.div>
 
-              <h3 className={`text-2xl font-black leading-tight ${isDark ? "text-white" : "text-slate-900"}`}>
+              <h3 className={`text-xl font-black leading-tight sm:text-2xl ${isDark ? "text-white" : "text-slate-900"}`}>
                 Let's build something{" "}
                 <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                   great together
@@ -305,7 +305,7 @@ function Contact({ theme }) {
                 <span className="font-semibold text-cyan-400">CMNexa</span>.
               </p>
 
-              <div className="mt-8 space-y-3">
+              <div className="mt-6 space-y-2.5">
                 {socialLinks.map((link, i) => (
                   <motion.div
                     key={link.label}
@@ -322,11 +322,11 @@ function Contact({ theme }) {
           </Reveal>
 
           {/* Right — Form */}
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} className="w-full">
             <motion.form
               onSubmit={handleSubmit}
               whileHover={{ y: -3 }}
-              className={`relative overflow-hidden rounded-[32px] p-8 md:p-10 shadow-xl ${
+              className={`relative w-full overflow-hidden rounded-[20px] p-5 sm:p-7 md:rounded-[28px] md:p-9 shadow-xl ${
                 isDark
                   ? "border border-white/8 bg-white/[0.03] backdrop-blur-xl"
                   : "border border-slate-200 bg-white"
@@ -339,12 +339,13 @@ function Contact({ theme }) {
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-400/50 to-transparent" />
 
-              <h3 className={`mb-7 text-xl font-black ${isDark ? "text-white" : "text-slate-900"}`}>
+              <h3 className={`mb-6 text-lg font-black sm:text-xl ${isDark ? "text-white" : "text-slate-900"}`}>
                 Send a Message
               </h3>
 
-              <div className="grid gap-5">
-                <div className="grid gap-5 sm:grid-cols-2">
+              <div className="grid gap-4">
+                {/* Name + Email — single column on mobile, 2-col on sm+ */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <FloatingInput label="Your Name" name="name" value={formData.name} onChange={handleChange} error={errors.name} placeholder="John Doe" isDark={isDark} />
                   <FloatingInput label="Your Email" name="email" type="email" value={formData.email} onChange={handleChange} error={errors.email} placeholder="john@example.com" isDark={isDark} />
                 </div>
@@ -358,7 +359,7 @@ function Contact({ theme }) {
                   disabled={status.loading}
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 font-bold text-white shadow-[0_4px_24px_rgba(34,211,238,0.35)] transition-all duration-300 hover:shadow-[0_8px_32px_rgba(34,211,238,0.5)] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="group relative w-full inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 font-bold text-white shadow-[0_4px_24px_rgba(34,211,238,0.35)] transition-all duration-300 hover:shadow-[0_8px_32px_rgba(34,211,238,0.5)] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {/* Shimmer */}
                   <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
