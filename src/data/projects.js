@@ -55,7 +55,7 @@ const projects = [
       "Machine learning project built for data analysis and diamond price prediction using a complete model workflow.",
     tech: ["Python", "HTML", "Machine Learning"],
     github: "https://github.com/chamod419/diamond-price-web.git",
-    live: "https://diamond-price-web.vercel.app/",
+    live: "https://diamond-prices.vercel.app/",
     image: "/projects/diamond-price.png",
     category: "Machine Learning",
   },
