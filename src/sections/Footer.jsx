@@ -147,7 +147,7 @@ function Footer({ theme }) {
           <p className={`text-xs font-medium ${isDark ? "text-gray-500" : "text-slate-400"}`}>
             © 2026 Chamod Madhusanka. All rights reserved.
           </p>
-          <p className={`flex items-center gap-1.5 text-xs font-medium ${isDark ? "text-gray-500" : "text-slate-400"}`}>
+          {/* <p className={`flex items-center gap-1.5 text-xs font-medium ${isDark ? "text-gray-500" : "text-slate-400"}`}>
             Built with
             <motion.span
               animate={{ scale: [1, 1.3, 1] }}
@@ -156,7 +156,7 @@ function Footer({ theme }) {
               <FaHeart className="text-red-400" />
             </motion.span>
             using React & Tailwind
-          </p>
+          </p> */}
         </div>
       </div>
     </footer>

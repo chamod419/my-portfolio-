@@ -300,7 +300,7 @@ function Contact({ theme }) {
               </h3>
 
               <p className={`mt-4 text-sm leading-relaxed ${isDark ? "text-gray-400" : "text-slate-500"}`}>
-                Open to junior software roles, internships, freelance work, and
+                Open to software engineering roles, freelance work, and
                 exciting collaborations through my personal work and{" "}
                 <span className="font-semibold text-cyan-400">CMNexa</span>.
               </p>

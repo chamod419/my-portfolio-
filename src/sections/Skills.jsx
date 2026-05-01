@@ -203,7 +203,7 @@ function Skills({ theme }) {
 
               <p className={`mt-4 text-sm leading-relaxed ${isDark ? "text-gray-400" : "text-slate-500"}`}>
                 I focus on building software that is attractive, responsive,
-                usable, and technically structured — turning ideas into complete working products.
+                usable, and technically structured - turning ideas into complete working products.
               </p>
 
               {/* Stat cards */}
